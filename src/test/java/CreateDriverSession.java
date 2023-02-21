@@ -8,7 +8,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class CreateDriverSession {
-    public static void main(String[] args) throws MalformedURLException {
+    public static AppiumDriver initializeDriver(String platformName) throws Exception {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
         caps.setCapability(MobileCapabilityType.DEVICE_NAME, "nexus_5");
@@ -19,7 +19,7 @@ public class CreateDriverSession {
         caps.setCapability("avd", "Nexus_5_API_29");
         //had to increase timeout from 180000 to 280000 to prevent 500 error
         caps.setCapability("avdLaunchTimeout", 280000);
-        //for windows users
+        //for Windows users
         String appUrl = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main"
                 + File.separator + "resources" + File.separator + "ApiDemos-debug.apk";
         //open previously installed app at a specific activity:
@@ -33,8 +33,9 @@ public class CreateDriverSession {
         //need to use localhost or 127.0.0.1, not 0.0.0.0 to fix "no session" error
         URL url = new URL("http://localhost:4723/wd/hub");
 
-        AppiumDriver driver = new AndroidDriver(url, caps);
-        System.out.println("session id: " + driver.getSessionId());
+        return new AndroidDriver(url, caps);
+        // System.out.println("session id: " + driver.getSessionId());
+       // return driver;
     }
 
     
