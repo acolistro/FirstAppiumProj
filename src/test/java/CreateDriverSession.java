@@ -14,6 +14,7 @@ public class CreateDriverSession {
         caps.setCapability(MobileCapabilityType.DEVICE_NAME, "nexus_5");
         caps.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiAutomator2");
         caps.setCapability(MobileCapabilityType.UDID, "emulator-5554");
+        caps.setCapability("newCommandTimeout", 300);
         //launch avd automatically and close it automatically
         caps.setCapability("avd", "Nexus_5_API_29");
         //had to increase timeout from 180000 to 280000 to prevent 500 error
@@ -33,8 +34,8 @@ public class CreateDriverSession {
         URL url = new URL("http://localhost:4723/wd/hub");
 
         AppiumDriver driver = new AndroidDriver(url, caps);
+        System.out.println("session id: " + driver.getSessionId());
     }
 
-
+    
 }
-
