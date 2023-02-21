@@ -11,11 +11,20 @@ public class AndroidUiAutomator {
         AppiumDriver driver = CreateDriverSession.initializeDriver("Android");
 
         WebElement myElement = driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"android:id/list\")"));
+
         List<WebElement> childElements = myElement.findElements(By.className("android.widget.TextView"));
-        WebElement mainElement = childElements.get(4);
+        WebElement mainElement = childElements.get(1);
         System.out.println(mainElement.getText());
 
-        myElement = driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.TextView\")"));
+        childElements = myElement.findElements(By.id("android:id/text1"));
+        mainElement = childElements.get(1);
+        System.out.println(mainElement.getText());
+
+        myElement = driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"Accessibility\")"));
+        System.out.println(myElement.getText());
+
+
+        myElement = driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().description(\"Accessibility\")"));
         //myElement1 = AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.TextView\")");
         System.out.println(myElement.getText());
 
